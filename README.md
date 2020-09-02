@@ -42,3 +42,19 @@ server.use(
   const { shop, accessToken } = ctx.state.shopify;
   ```
 
+  # Using verifyToken
+  You can use verifyToken to redirect users to /auth whenever their access token becomes invalid.
+  This is probably not the prettiest way to do this, but this is the way a Python dev does this
+  when said dev has not had a ton of experience with Koa.
+
+  ```
+  router.get("/", async (ctx, next) => {
+    const shop = getQueryKey(ctx, "shop");
+    // Using Amplify GraphQL here to persist
+    // credentials. Use whatever mechanism you'd like.
+    const settings = await getAppSettings(shop);
+    const token = settings.data.getUser && settings.data.getUser.token;
+    await verifyToken(ctx, token, shop, next);
+  });
+  ```
+
