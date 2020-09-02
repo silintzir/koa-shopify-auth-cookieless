@@ -34,7 +34,7 @@ server.use(
   ```
 
   # Please NOTE:
-  This package doesn't use an cookies or Koa session. If you want to retrieve the shop or accessToken from the 
+  This package doesn't use any cookies ( obviously ¯\_( ͡° ͜ʖ ͡°)_/¯ ) or Koa session. If you want to retrieve the shop or accessToken from the 
   context it looks like this:
 
   ```
