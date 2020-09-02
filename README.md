@@ -1,0 +1,1 @@
+# koa-shopify-auth-cookieless
