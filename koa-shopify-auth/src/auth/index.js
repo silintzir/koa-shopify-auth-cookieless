@@ -1,7 +1,5 @@
 const createOAuthStart = require("./create-oauth-start");
 const createOAuthCallback = require("./create-oauth-callback");
-const Error = require("./errors");
-const validateHMAC = require("./validate-hmac");
 
 const DEFAULT_MYSHOPIFY_DOMAIN = "myshopify.com";
 const DEFAULT_ACCESS_MODE = "online";
