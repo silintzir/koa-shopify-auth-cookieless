@@ -1,7 +1,7 @@
-import querystring from "querystring";
-import { getQueryKey } from "./utilities";
+const querystring = require("querystring");
+const { getQueryKey } = require("./utilities");
 
-export default function redirectQueryString(ctx) {
+function redirectQueryString(ctx) {
   const shop = ctx.state.shopify
     ? ctx.state.shopify.shop
     : getQueryKey(ctx, "shop");
@@ -19,3 +19,5 @@ export default function redirectQueryString(ctx) {
     session,
   });
 }
+
+module.exports = redirectQueryString;

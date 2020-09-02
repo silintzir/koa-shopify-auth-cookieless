@@ -1,9 +1,9 @@
-import querystring from "querystring";
-import crypto from "crypto";
+const querystring = require("querystring");
+const crypto = require("crypto");
 
-import safeCompare from "safe-compare";
+const safeCompare = require("safe-compare");
 
-export default function validateHmac(hmac, secret, query) {
+function validateHmac(hmac, secret, query) {
   const { hmac: _hmac, signature: _signature, ...map } = query;
 
   const orderedMap = Object.keys(map)
@@ -21,3 +21,5 @@ export default function validateHmac(hmac, secret, query) {
 
   return safeCompare(generatedHash, hmac);
 }
+
+module.exports = validateHmac;

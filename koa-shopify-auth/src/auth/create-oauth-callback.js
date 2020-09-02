@@ -1,9 +1,9 @@
-import querystring from "querystring";
+const querystring = require("querystring");
 
-import Error from "./errors";
-import validateHmac from "./validate-hmac";
+const Error = require("./errors");
+const validateHmac = require("./validate-hmac");
 
-export default function createOAuthCallback(config) {
+function createOAuthCallback(config) {
   return async function oAuthCallback(ctx) {
     const { query } = ctx;
     const { code, hmac, shop, state: nonce } = query;
@@ -59,3 +59,5 @@ export default function createOAuthCallback(config) {
     }
   };
 }
+
+module.exports = createOAuthCallback;

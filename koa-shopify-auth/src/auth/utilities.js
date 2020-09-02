@@ -1,4 +1,5 @@
-export function redirectToAuth({ fallbackRoute, authRoute }, ctx) {
+
+function redirectToAuth({ fallbackRoute, authRoute }, ctx) {
   const shop = getQueryKey(ctx, "shop");
 
   const routeForRedirect =
@@ -7,15 +8,21 @@ export function redirectToAuth({ fallbackRoute, authRoute }, ctx) {
   ctx.redirect(routeForRedirect);
 }
 
-export function getQueryKey(ctx, key) {
+function getQueryKey(ctx, key) {
   const param = new URL(
     `https://myshopify.com/${ctx.request.url}`
   ).searchParams.get(key);
   return param ? param : null;
 }
 
-export function getShopCredentials(ctx) {
+function getShopCredentials(ctx) {
   const shop = ctx.state.shopify && ctx.state.shopify.shop;
   const accessToken = ctx.state.shopify && ctx.state.shopify.accessToken;
   return [shop, accessToken];
+}
+
+module.exports = {
+  redirectToAuth,
+  getQueryKey,
+  getShopCredentials
 }

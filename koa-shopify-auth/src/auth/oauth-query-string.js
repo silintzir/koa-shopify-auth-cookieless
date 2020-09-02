@@ -1,10 +1,8 @@
-import querystring from "querystring";
-
-import nonce from "nonce";
-
+const querystring = require("querystring");
+const nonce = require("nonce");
 const createNonce = nonce();
 
-export default function oAuthQueryString(ctx, options, callbackPath) {
+function oAuthQueryString(ctx, options, callbackPath) {
   const { host } = ctx;
   const { scopes = [], apiKey, accessMode } = options;
 
@@ -23,3 +21,5 @@ export default function oAuthQueryString(ctx, options, callbackPath) {
 
   return querystring.stringify(redirectParams);
 }
+
+module.exports = oAuthQueryString;

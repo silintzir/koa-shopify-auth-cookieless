@@ -1,7 +1,7 @@
-import { Method, Header, StatusCode } from "@shopify/network";
-import { redirectToAuth, getShopCredentials } from "./utilities";
+const { Method, Header, StatusCode } = require("@shopify/network");
+const { redirectToAuth, getShopCredentials } = require("./utilities");
 
-export default async function verifyToken(ctx, next) {
+async function verifyToken(ctx, next) {
   const [shop, accessToken] = getShopCredentials(ctx);
   const routes = {
     authRoute: "/auth",
@@ -28,3 +28,5 @@ export default async function verifyToken(ctx, next) {
 
   redirectToAuth(routes, ctx);
 }
+
+module.exports = verifyToken;

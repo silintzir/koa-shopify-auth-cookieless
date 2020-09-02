@@ -1,7 +1,7 @@
-import Error from "./errors";
-import oAuthQueryString from "./oauth-query-string";
+const Error = require("./errors");
+const oAuthQueryString = require("./oauth-query-string");
 
-export default function createOAuthStart(options, callbackPath) {
+function createOAuthStart(options, callbackPath) {
   return function oAuthStart(ctx) {
     const { myShopifyDomain } = options;
     const { query } = ctx;
@@ -24,3 +24,5 @@ export default function createOAuthStart(options, callbackPath) {
     ctx.redirect(redirectUri);
   };
 }
+
+module.exports = createOAuthStart;

@@ -1,10 +1,12 @@
-import createOAuthStart from "./create-oauth-start";
-import createOAuthCallback from "./create-oauth-callback";
+const createOAuthStart = require("./create-oauth-start");
+const createOAuthCallback = require("./create-oauth-callback");
+const Error = require("./errors");
+const validateHMAC = require("./validate-hmac");
 
 const DEFAULT_MYSHOPIFY_DOMAIN = "myshopify.com";
 const DEFAULT_ACCESS_MODE = "online";
 
-export default function createShopifyAuth(options) {
+function createShopifyAuth(options) {
   const config = {
     scopes: [],
     prefix: "",
@@ -36,5 +38,4 @@ export default function createShopifyAuth(options) {
   };
 }
 
-export { default as Error } from "./errors";
-export { default as validateHMAC } from "./validate-hmac";
+module.exports = createShopifyAuth;
