@@ -5,9 +5,9 @@ const createShopifyAuth = require("./auth/index");
 const validateHMAC = require("./auth/validate-hmac");
 const oAuthQueryString = require("./auth/oauth-query-string");
 const redirectQueryString = require("./auth/redirect-query-string");
-const redirectToAuth = require("./auth/utilities");
-const getQueryKey = require("./auth/utilities");
-const getShopCredentials = require("./auth/utilities");
+const redirectToAuth = require("./auth/utilities").redirectToAuth;
+const getQueryKey = require("./auth/utilities").getQueryKey;
+const getShopCredentials = require("./auth/utilities").getShopCredentials;
 const verifyToken = require("./auth/verify-token");
 
 
