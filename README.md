@@ -7,7 +7,8 @@ This is not sponsored or endorsed by Shopify, or connected with Shopify in any w
 I'm providing this package as a reference for using with Shopify's Next Gen JWT-based Cookieless Auth.
 
 # Important
-This is a near drop-in replacement for the official koa-shopify-auth package, but make sure to import like this:
+This is a near drop-in replacement for the official koa-shopify-auth package, but make sure you don't 
+import createShopifyAuth as default:
 
 ```
 import { createShopifyAuth, verifyToken, redirectQueryString } from "koa-shopify-auth-cookieless";
