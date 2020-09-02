@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/nprutan/koa-shopify-auth-cookieless/issues"
   },
-  "homepage": "https://github.com/nprutan/koa-shopify-auth-cookieless#readme"
+  "homepage": "https://github.com/nprutan/koa-shopify-auth-cookieless#readme",
+  "dependencies": {
+    "@shopify/network": "^1.5.0",
+    "nonce": "^1.0.4",
+    "safe-compare": "^1.1.2"
+  }
 }
