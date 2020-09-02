@@ -23,7 +23,6 @@ export default function createOAuthCallback(config) {
       return;
     }
 
-    /* eslint-disable @typescript-eslint/camelcase */
     const accessTokenQuery = querystring.stringify({
       code,
       client_id: apiKey,

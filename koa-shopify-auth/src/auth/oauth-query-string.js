@@ -10,14 +10,12 @@ export default function oAuthQueryString(ctx, options, callbackPath) {
 
   const requestNonce = createNonce();
 
-  /* eslint-disable @typescript-eslint/camelcase */
   const redirectParams = {
     state: requestNonce,
     scope: scopes.join(", "),
     client_id: apiKey,
     redirect_uri: `https://${host}${callbackPath}`,
   };
-  /* eslint-enable @typescript-eslint/camelcase */
 
   if (accessMode === "online") {
     redirectParams["grant_options[]"] = "per-user";

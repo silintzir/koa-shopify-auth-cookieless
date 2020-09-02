@@ -1,11 +1,10 @@
 import querystring from "querystring";
+import { getQueryKey } from "./utilities";
 
 export default function redirectQueryString(ctx) {
   const shop = ctx.state.shopify
     ? ctx.state.shopify.shop
-    : new URL(`https://myshopify.com${ctx.request.url}`).searchParams.get(
-        "shop"
-      );
+    : getQueryKey(ctx, "shop");
 
   const url = new URL(`https://${shop}${ctx.url || ctx.request.url}`);
   const hmac = url.searchParams.get("hmac");
