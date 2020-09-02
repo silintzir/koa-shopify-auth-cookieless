@@ -4,7 +4,7 @@ const createOAuthCallback = require("./create-oauth-callback");
 const DEFAULT_MYSHOPIFY_DOMAIN = "myshopify.com";
 const DEFAULT_ACCESS_MODE = "online";
 
-function createShopifyAuth(options) {
+const createShopifyAuth = (options) => {
   const config = {
     scopes: [],
     prefix: "",

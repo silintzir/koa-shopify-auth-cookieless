@@ -1,7 +1,7 @@
 const { Method, Header, StatusCode } = require("@shopify/network");
 const { redirectToAuth, getShopCredentials } = require("./utilities");
 
-async function verifyToken(ctx, next) {
+const verifyToken = async (ctx, next) => {
   const [shop, accessToken] = getShopCredentials(ctx);
   const routes = {
     authRoute: "/auth",

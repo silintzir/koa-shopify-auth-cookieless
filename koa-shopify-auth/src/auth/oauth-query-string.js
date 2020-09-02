@@ -2,7 +2,7 @@ const querystring = require("querystring");
 const nonce = require("nonce");
 const createNonce = nonce();
 
-function oAuthQueryString(ctx, options, callbackPath) {
+const oAuthQueryString = (ctx, options, callbackPath) => {
   const { host } = ctx;
   const { scopes = [], apiKey, accessMode } = options;
 

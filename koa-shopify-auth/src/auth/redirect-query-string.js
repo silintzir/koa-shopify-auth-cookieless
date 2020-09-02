@@ -1,7 +1,7 @@
 const querystring = require("querystring");
 const { getQueryKey } = require("./utilities");
 
-function redirectQueryString(ctx) {
+const redirectQueryString = (ctx) => {
   const shop = ctx.state.shopify
     ? ctx.state.shopify.shop
     : getQueryKey(ctx, "shop");

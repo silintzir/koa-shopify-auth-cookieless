@@ -1,6 +1,6 @@
 {
   "name": "koa-shopify-auth-cookieless",
-  "version": "1.0.15",
+  "version": "1.0.17",
   "description": "A cookieless version of the koa-shopify-auth package with some utilities",
   "main": "src/index.js",
   "scripts": {

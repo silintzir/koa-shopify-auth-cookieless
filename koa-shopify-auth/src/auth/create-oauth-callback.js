@@ -3,7 +3,7 @@ const querystring = require("querystring");
 const Error = require("./errors");
 const validateHmac = require("./validate-hmac");
 
-function createOAuthCallback(config) {
+const createOAuthCallback = (config) => {
   return async function oAuthCallback(ctx) {
     const { query } = ctx;
     const { code, hmac, shop, state: nonce } = query;

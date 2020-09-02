@@ -1,7 +1,7 @@
 const Error = require("./errors");
 const oAuthQueryString = require("./oauth-query-string");
 
-function createOAuthStart(options, callbackPath) {
+const createOAuthStart = (options, callbackPath) => {
   return function oAuthStart(ctx) {
     const { myShopifyDomain } = options;
     const { query } = ctx;

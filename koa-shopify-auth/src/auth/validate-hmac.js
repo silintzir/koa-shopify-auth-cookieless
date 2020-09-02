@@ -3,7 +3,7 @@ const crypto = require("crypto");
 
 const safeCompare = require("safe-compare");
 
-function validateHmac(hmac, secret, query) {
+const validateHmac = (hmac, secret, query) => {
   const { hmac: _hmac, signature: _signature, ...map } = query;
 
   const orderedMap = Object.keys(map)
