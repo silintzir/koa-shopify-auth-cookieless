@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/nprutan/koa-shopify-auth-cookieless.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "@shopify:registry": "https://registry.npmjs.org"
+  },
   "keywords": [
     "koa",
     "shopify",
