@@ -22,7 +22,7 @@ function getShopCredentials(ctx) {
 }
 
 module.exports = {
-  redirectToAuth,
-  getQueryKey,
-  getShopCredentials
+  redirectToAuth: redirectToAuth,
+  getQueryKey: getQueryKey,
+  getShopCredentials: getShopCredentials
 }
