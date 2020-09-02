@@ -21,8 +21,6 @@ const getShopCredentials = (ctx) => {
   return [shop, accessToken];
 }
 
-module.exports = {
-  redirectToAuth,
-  getQueryKey,
-  getShopCredentials
-}
+exports = redirectToAuth;
+exports = getQueryKey;
+exports = getShopCredentials;
