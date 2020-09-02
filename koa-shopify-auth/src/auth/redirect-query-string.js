@@ -6,7 +6,7 @@ export default function redirectQueryString(ctx) {
     : new URL(`https://myshopify.com${ctx.request.url}`).searchParams.get(
         "shop"
       );
-  console.log("shop in redirectQueryString", shop);
+
   const url = new URL(`https://${shop}${ctx.url || ctx.request.url}`);
   const hmac = url.searchParams.get("hmac");
   const timestamp = url.searchParams.get("timestamp");

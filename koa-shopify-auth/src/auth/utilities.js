@@ -1,11 +1,8 @@
 export function redirectToAuth({ fallbackRoute, authRoute }, ctx) {
   const shop = getQueryKey(ctx, "shop");
-  console.log("redirectToAuth", shop);
 
   const routeForRedirect =
     shop == null ? fallbackRoute : `${authRoute}?shop=${shop}`;
-
-  console.log("redirectAuthRoute", routeForRedirect);
 
   ctx.redirect(routeForRedirect);
 }
