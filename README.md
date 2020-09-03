@@ -54,7 +54,8 @@ server.use(
     // credentials. Use whatever mechanism you'd like.
     const settings = await getAppSettings(shop);
     const token = settings.data.getUser && settings.data.getUser.token;
-    await verifyToken(ctx, token, shop, next);
+    ctx.state = { shopify: { shop: shop, accessToken: token } };
+    await verifyToken(ctx, next);
   });
   ```
 
