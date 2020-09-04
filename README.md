@@ -34,28 +34,28 @@ server.use(
   );
   ```
 
-  # Please NOTE:
-  This package doesn't use any cookies ( obviously ¯\_( ͡° ͜ʖ ͡°)_/¯ ) or Koa session. If you want to retrieve the shop or accessToken from the 
-  context it looks like this:
+# Please NOTE:
+This package doesn't use any cookies ( obviously ¯\_( ͡° ͜ʖ ͡°)_/¯ ) or Koa session. If you want to retrieve the shop or accessToken from the 
+context it looks like this:
 
-  ```
-  const { shop, accessToken } = ctx.state.shopify;
-  ```
+```
+const { shop, accessToken } = ctx.state.shopify;
+```
 
-  # Using verifyToken
-  You can use verifyToken to redirect users to /auth whenever their access token becomes invalid.
-  This is probably not the prettiest way to do this, but this is the way a Python dev does this
-  when said dev has not had a ton of experience with Koa.
-  
-  ```
-  router.get("/", async (ctx, next) => {
-    const shop = getQueryKey(ctx, "shop");
-    // Using Amplify GraphQL here to persist
-    // credentials. Use whatever mechanism you'd like.
-    const settings = await getAppSettings(shop);
-    const token = settings.data.getUser && settings.data.getUser.token;
-    ctx.state = { shopify: { shop: shop, accessToken: token } };
-    await verifyToken(ctx, next);
-  });
-  ```
+# Using verifyToken
+You can use verifyToken to redirect users to /auth whenever their access token becomes invalid.
+This is probably not the prettiest way to do this, but this is the way a Python dev does this
+when said dev has not had a ton of experience with Koa.
+
+```
+router.get("/", async (ctx, next) => {
+  const shop = getQueryKey(ctx, "shop");
+  // Using Amplify GraphQL here to persist
+  // credentials. Use whatever mechanism you'd like.
+  const settings = await getAppSettings(shop);
+  const token = settings.data.getUser && settings.data.getUser.token;
+  ctx.state = { shopify: { shop: shop, accessToken: token } };
+  await verifyToken(ctx, next);
+});
+```
 
