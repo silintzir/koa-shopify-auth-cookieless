@@ -6,6 +6,9 @@ This is not sponsored or endorsed by Shopify, or connected with Shopify in any w
 
 I'm providing this package as a reference for using with Shopify's Next Gen JWT-based Cookieless Auth.
 
+You may be interested in using this cookieless GraphQL Proxy along with this package:
+https://www.npmjs.com/package/koa-shopify-graphql-proxy-cookieless
+
 # Important
 This is a near drop-in replacement for the official koa-shopify-auth package, but make sure you don't 
 import createShopifyAuth as default:
