@@ -1,6 +1,6 @@
 # koa-shopify-auth-cookieless
 
-This is a fork of the Shopify quilt package https://github.com/Shopify/quilt/tree/master/packages/koa-shopify-auth/src
+This is a fork of the Shopify quilt package https://github.com/Shopify/quilt/tree/master/packages/koa-shopify-auth#readme
 
 This is not sponsored or endorsed by Shopify, or connected with Shopify in any way.
 
