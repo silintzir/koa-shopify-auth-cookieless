@@ -11,7 +11,7 @@ https://www.npmjs.com/package/koa-shopify-graphql-proxy-cookieless
 
 # Important
 This is a near drop-in replacement for the official koa-shopify-auth package, but make sure you don't 
-import createShopifyAuth as default:
+import createShopifyAuth as default, use named imports:
 
 ```
 import { createShopifyAuth, verifyToken, getQueryKey, redirectQueryString } from "koa-shopify-auth-cookieless";
