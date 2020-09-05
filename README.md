@@ -14,7 +14,7 @@ This is a near drop-in replacement for the official koa-shopify-auth package, bu
 import createShopifyAuth as default:
 
 ```
-import { createShopifyAuth, verifyToken, redirectQueryString } from "koa-shopify-auth-cookieless";
+import { createShopifyAuth, verifyToken, getQueryKey, redirectQueryString } from "koa-shopify-auth-cookieless";
 
 ```
 
