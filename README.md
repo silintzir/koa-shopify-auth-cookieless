@@ -64,7 +64,7 @@ router.get("/", async (ctx, next) => {
 
 # See Working Demo
 I've created a working demo based on the Shopify-CLI Node project.  
-[Shopify Cookieless Auth Demo] (https://github.com/nprutan/shopify-cookieless-auth-demo)  
+<https://github.com/nprutan/shopify-cookieless-auth-demo>
 If you'd like to see this in action, create a new Shopif-CLI project,
 and also clone the demo repo. Once you've cloned the demo, you can connect
 an existing Shopify project to the demo. Open a terminal in the 
