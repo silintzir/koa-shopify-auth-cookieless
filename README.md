@@ -62,3 +62,11 @@ router.get("/", async (ctx, next) => {
 });
 ```
 
+# See Working Demo
+I've created a working demo based on the Shopify-CLI Node project. 
+If you'd like to see this in action, create a new Shopif-CLI project,
+and also clone the demo repo. Once you've cloned the demo, you can connect
+an existing Shopify project to the demo. Open a terminal in the 
+demo directory and use the command:
+```shopify connect```
+
