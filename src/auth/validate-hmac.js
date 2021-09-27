@@ -12,7 +12,6 @@ const validateHmac = (hmac, secret, query) => {
     }, {});
 
   const message = new URLSearchParams(orderedMap).toString();
-  console.log(message);
   const generatedHash = crypto
     .createHmac("sha256", secret)
     .update(message)
