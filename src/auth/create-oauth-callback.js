@@ -1,5 +1,3 @@
-const querystring = require("querystring");
-
 const Error = require("./errors");
 const validateHmac = require("./validate-hmac");
 
@@ -23,11 +21,11 @@ const createOAuthCallback = (config) => {
       return;
     }
 
-    const accessTokenQuery = querystring.stringify({
+    const accessTokenQuery = new URLSearchParams({
       code,
       client_id: apiKey,
       client_secret: secret,
-    });
+    }).toString();
 
     const accessTokenResponse = await fetch(
       `https://${shop}/admin/oauth/access_token`,

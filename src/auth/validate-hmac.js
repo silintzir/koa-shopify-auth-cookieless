@@ -1,6 +1,4 @@
-const querystring = require("querystring");
 const crypto = require("crypto");
-
 const safeCompare = require("safe-compare");
 
 const validateHmac = (hmac, secret, query) => {
@@ -13,7 +11,8 @@ const validateHmac = (hmac, secret, query) => {
       return accum;
     }, {});
 
-  const message = querystring.stringify(orderedMap);
+  const message = new URLSearchParams(orderedMap).toString();
+  console.log(message);
   const generatedHash = crypto
     .createHmac("sha256", secret)
     .update(message)

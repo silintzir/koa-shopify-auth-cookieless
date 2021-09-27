@@ -1,6 +1,6 @@
 # koa-shopify-auth-cookieless
 
-This is a fork of the Shopify quilt package https://github.com/Shopify/quilt/tree/master/packages/koa-shopify-auth#readme
+This is a fork of the Shopify package https://github.com/Shopify/koa-shopify-auth/blob/master/README.md
 
 This is not sponsored or endorsed by Shopify, or connected with Shopify in any way.
 
@@ -38,7 +38,21 @@ server.use(
   ```
 
 # Please NOTE:
-This package doesn't use any cookies ( obviously ¯\_( ͡° ͜ʖ ͡°)_/¯ ) or Koa session. If you want to retrieve the shop or accessToken from the 
+This package doesn't use any cookies ( obviously ¯\_( ͡° ͜ʖ ͡°)_/¯ ) OR Koa session.
+The intent was to strip functionality down as much as possible in order to focus on 
+the OAuth flow and retrieving an accessToken. 
+Please note that the official @shopify/koa-shopify-auth package uses sessions to manage access tokens. 
+This package takes a different approach and allows for persisting the accessToken however you choose. 
+While this may work for some situations, you will probably still need to implement some kind of session strategy when your
+app goes into production, in order to log the user out after some time interval. If you are otherwise
+persisting your accessTokens with another method, you do not need to implement a session strategy
+that stores your tokens in the session. You will just need to create a mechanism for invalidating
+sessions on some interval.
+Please keep in mind though, that if the user uninstalls the app, the verifyToken function will
+force a redirect to /auth.
+https://github.com/Shopify/koa-shopify-auth#session
+
+If you want to retrieve the shop or accessToken from the 
 context it looks like this:
 
 ```

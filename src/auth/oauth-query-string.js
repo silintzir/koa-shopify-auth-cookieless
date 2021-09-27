@@ -1,4 +1,3 @@
-const querystring = require("querystring");
 const nonce = require("nonce");
 const createNonce = nonce();
 
@@ -19,7 +18,7 @@ const oAuthQueryString = (ctx, options, callbackPath) => {
     redirectParams["grant_options[]"] = "per-user";
   }
 
-  return querystring.stringify(redirectParams);
+  return new URLSearchParams(redirectParams).toString();
 }
 
 module.exports = oAuthQueryString;

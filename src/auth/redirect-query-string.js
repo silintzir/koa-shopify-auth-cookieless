@@ -1,4 +1,3 @@
-const querystring = require("querystring");
 const { getQueryKey } = require("./utilities");
 
 const redirectQueryString = (ctx) => {
@@ -11,13 +10,13 @@ const redirectQueryString = (ctx) => {
   const timestamp = url.searchParams.get("timestamp");
   const locale = url.searchParams.get("locale");
   const session = url.searchParams.get("session");
-  return querystring.stringify({
+  return new URLSearchParams({
     hmac,
     shop,
     timestamp,
     locale,
     session,
-  });
+  }).toString();
 }
 
 module.exports = redirectQueryString;
