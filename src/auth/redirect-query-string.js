@@ -4,6 +4,9 @@ const redirectQueryString = (ctx) => {
   const shop = ctx.state.shopify
     ? ctx.state.shopify.shop
     : getQueryKey(ctx, "shop");
+  const host = ctx.query
+    ? ctx.query.host 
+    : getQueryKey(ctx, "host");
 
   const url = new URL(`https://${shop}${ctx.url || ctx.request.url}`);
   const hmac = url.searchParams.get("hmac");
@@ -16,6 +19,7 @@ const redirectQueryString = (ctx) => {
     timestamp,
     locale,
     session,
+    host
   }).toString();
 }
 

@@ -1,4 +1,5 @@
-const { Method, Header, StatusCode } = require("@shopify/network");
+const { Shopify } = require("@shopify/shopify-api")
+const { StatusCode } = require("@shopify/network");
 const { redirectToAuth, getShopCredentials } = require("./utilities");
 
 const verifyToken = async (ctx, next) => {
@@ -9,13 +10,8 @@ const verifyToken = async (ctx, next) => {
   };
 
   if (accessToken) {
-    const response = await fetch(`https://${shop}/admin/metafields.json`, {
-      method: Method.Post,
-      headers: {
-        [Header.ContentType]: "application/json",
-        "X-Shopify-Access-Token": accessToken,
-      },
-    });
+    const client = new Shopify.Clients.Rest(shop, accessToken)
+    const response = await client.get({ path: "metafields", query: {'limit': 1} }) 
 
     if (response.status === StatusCode.Unauthorized) {
       redirectToAuth(routes, ctx);

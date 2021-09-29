@@ -9,6 +9,7 @@ const redirectToAuth = require("./auth/utilities").redirectToAuth;
 const getQueryKey = require("./auth/utilities").getQueryKey;
 const getShopCredentials = require("./auth/utilities").getShopCredentials;
 const verifyToken = require("./auth/verify-token");
+const verifyJwtSessionToken = require("./auth/verifyJwtSessionToken");
 
 
 module.exports = {
@@ -23,5 +24,6 @@ module.exports = {
     redirectToAuth,
     getQueryKey,
     getShopCredentials,
-    verifyToken
+    verifyToken,
+    verifyJwtSessionToken
 }
