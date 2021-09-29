@@ -14,7 +14,7 @@ This is a near drop-in replacement for the official koa-shopify-auth package, bu
 import createShopifyAuth as default, use named imports:
 
 ```
-import { createShopifyAuth, verifyToken, getQueryKey, redirectQueryString } from "koa-shopify-auth-cookieless";
+import { createShopifyAuth, verifyToken, verifyJwtSessionToken, getQueryKey, redirectQueryString } from "koa-shopify-auth-cookieless";
 
 ```
 
@@ -64,19 +64,70 @@ const { shop, accessToken } = ctx.state.shopify;
 
 # Using verifyToken
 You can use verifyToken to redirect users to /auth whenever their access token becomes invalid.
-This is probably not the prettiest way to do this, but this is the way a Python dev does this
-when said dev has not had a ton of experience with Koa.
 
 ```
-router.get("/", async (ctx, next) => {
-  const shop = getQueryKey(ctx, "shop");
-  // Using Amplify GraphQL here to persist
-  // credentials. Use whatever mechanism you'd like.
-  const settings = await getAppSettings(shop);
-  const token = settings.data.getUser && settings.data.getUser.token;
-  ctx.state = { shopify: { shop: shop, accessToken: token } };
-  await verifyToken(ctx, next);
-});
+router.get("(.*)", async (ctx, next) => {
+    const shop = getQueryKey(ctx, "shop");
+    // Retrieve token here
+    const token = "persistedAccessToken";
+    ctx.state = { shopify: { shop: shop, accessToken: token } };
+    await verifyToken(ctx, next);
+    await handleRequest(ctx);
+  });
+```
+
+# Using verifyJwtSessionToken
+Please note that the use of the word "session" here does not mean that we are using any session
+with this package. As part of Shopify's new cookieless (or maybe a better term is cookie-lite, or opt-out-of-cookies) 
+JWT architecture, the AppBridge component will keep a fresh JWT token available to the app as long
+as the user is logged in.
+IMPORTANT -- You MUST use some form of detecting whether the following headers are set:
+X-Shopify-API-Request-Failure-Reauthorize === 1
+X-Shopify-API-Request-Failure-Reauthorize-Url === "your /auth url"
+
+If you are using Shopify's NextJS example that is created with the Shopify CLI, you can see this in 
+_app.js:
+
+```
+function userLoggedInFetch(app) {
+  const fetchFunction = authenticatedFetch(app);
+
+  return async (uri, options) => {
+    const response = await fetchFunction(uri, options);
+
+    if (
+      response.headers.get("X-Shopify-API-Request-Failure-Reauthorize") === "1"
+    ) {
+      const authUrlHeader = response.headers.get(
+        "X-Shopify-API-Request-Failure-Reauthorize-Url"
+      );
+
+      const redirect = Redirect.create(app);
+      redirect.dispatch(Redirect.Action.APP, authUrlHeader || `/auth`);
+      return null;
+    }
+
+    return response;
+  };
+}
+```
+This package will set those headers and redirect whenever the JWT session token becomes invalid.
+Typically this happens when the user is logged out in another tab, but the embedded app
+is still open in a different window / tab. It usually takes about 20 seconds for the JWT to become
+invalid, and the app will automatically redirect, as long as you have code like the above.
+
+Using the verifyJwtSessionToken function:
+
+```
+router.post(
+    "/graphql",
+    // verifyRequest({ returnHeader: true }),
+    async (ctx, next) => {
+      const shop = await verifyJwtSessionToken(ctx, next, Shopify.Context);
+      const accessToken = "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"; 
+      await graphqlProxy(shop, accessToken, ctx);
+    }
+  );
 ```
 
 # See Working Demo
