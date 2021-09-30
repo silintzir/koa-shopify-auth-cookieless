@@ -20,12 +20,23 @@ import { createShopifyAuth, verifyToken, verifyJwtSessionToken, getQueryKey, red
 
 # Example
 Here's the basic example:
+NOTE: You must now initialize the Shopify Context
+You only need to pass accessMode to createShopifyAuth
+ 
 ```
+Shopify.Context.initialize({
+  API_KEY: process.env.SHOPIFY_API_KEY,
+  API_SECRET_KEY: process.env.SHOPIFY_API_SECRET,
+  SCOPES: process.env.SCOPES.split(","),
+  HOST_NAME: process.env.HOST.replace(/https:\/\//, ""),
+  API_VERSION: ApiVersion.April21,
+  IS_EMBEDDED_APP: true,
+  // This should be replaced with your preferred storage strategy
+  SESSION_STORAGE: null,
+});
+
 server.use(
     createShopifyAuth({
-      apiKey: SHOPIFY_API_KEY,
-      secret: SHOPIFY_API_SECRET,
-      scopes: [SCOPES],
       accessMode: "offline",
 
       async afterAuth(ctx) {
@@ -124,7 +135,9 @@ router.post(
     // verifyRequest({ returnHeader: true }),
     async (ctx, next) => {
       const shop = await verifyJwtSessionToken(ctx, next, Shopify.Context);
-      const accessToken = "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"; 
+      const accessToken = "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";
+      // NOTE: You will need to use koa-shopify-graphql-proxy-cookieless 
+      // for the graphqlProxy function below
       await graphqlProxy(shop, accessToken, ctx);
     }
   );
